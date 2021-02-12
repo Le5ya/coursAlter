@@ -25,11 +25,16 @@ todoCompleted.textContent = '';
            todoList.append(li);
          }
          const btnTodoCompleted = li.querySelector('.todo-complete');
-
+         const btnTodoRemove = li.querySelector('.todo-remove');
+         
          btnTodoCompleted.addEventListener('click', function () {
            item.completed = !item.completed;
            render();
-         })
+         });
+         btnTodoRemove.addEventListener('click', function () {
+          todoList.remove(item);
+           render();
+         });       
   });
 };
 todoControl.addEventListener('submit', function(event){
@@ -39,7 +44,11 @@ const newTodo = {
   value: headerInput.value,
   completed: false
 }
+if (newTodo.value !==''){
   todoData.push(newTodo);
+  headerInput.value = '';
+}
+  
 
   render();
 });
