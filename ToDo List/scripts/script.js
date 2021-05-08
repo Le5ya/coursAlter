@@ -5,9 +5,9 @@ const todoControl = document.querySelector('.todo-control'),
       todoList = document.querySelector('.todo-list'),
       todoCompleted = document.querySelector('.todo-completed');
 
-const todoData = [
+let todoData = [];
+
   
-    ];
 
     const render = function() {
 
@@ -57,8 +57,17 @@ const todoData = [
            render()
         });  
 
-      }); 
+      });
     };
+
+       localStorage.getItem('list', todo);
+       let data = localStorage.getItem('list', todo);
+       let dataInit = JSON.parse(data);
+    
+       todoData = dataInit; 
+       console.log(todoData);
+
+
     todoControl.addEventListener('submit', function(event){
       event.preventDefault()
       const newTodo = {
@@ -69,10 +78,11 @@ const todoData = [
         todoData.push(newTodo);   
       };
       headerInput.value = '';
-      render();
-       let todo = JSON.stringify(todoData);
+
+      let todo = JSON.stringify(todoData);
       localStorage.setItem('list', todo);
-      
+      render();
+ 
     });
     render();
 
